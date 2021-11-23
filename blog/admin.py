@@ -8,4 +8,4 @@ from .models import Post
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'publish', 'status']
     prepopulated_fields = {'slug': ('title',)}
-    ordering = ('status', 'puslish')
+    ordering = ('status', 'publish')
