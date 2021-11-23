@@ -1,6 +1,45 @@
 {% extends 'base.html'%}
+{% load static %}
 {% block title %}Home{% endblock%}
 
 {% block content %}
-<p>This is homepage</p>
+<!-- banner image -->
+
+<div class="card bg-dark text-white">
+    <img src="{% static 'images/python.jpg' %}" class="card-img" alt="python-image-banner"
+        style="max-height: 300px; width: 100%;">
+    <div class="card-img-overlay">
+
+        <h1 class="card-text display-1 text-uppercase text-start p-5 vertical-align">Learn Python</h1>
+    </div>
+</div>
+
+<!-- post-list -->
+<div class="container my-5 py-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in posts %}
+        <div class="col">
+            <div class="card bg-light p-3">
+                <div class="card-body">
+                    <a href="{{ post.get_absolute_url }}" class="nav-link">
+                        <h3 class="card-title fw-bold">{{ post.title }}</h3>
+                    </a>
+                    <p class="card-text">{{ post.body|truncatewords:30|linebreaks }}<a
+                            href="{{ post.get_absolute_url }}" class="card-link text-uppercase">read more</a>
+                    </p>
+
+                </div>
+                <div class="card-footer text-muted">
+                    Published {{ post.publish }} by {{ post.author }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h1>No posts listed</h1>
+        {% endfor %}
+    </div>
+
+</div>
+
+
 {% endblock %}

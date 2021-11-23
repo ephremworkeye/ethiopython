@@ -1,6 +1,19 @@
 {% extends 'base.html'%}
-{% block title %}Home{% endblock%}
+{% block title %}{{ post.title }}{% endblock%}
 
 {% block content %}
-<p>This is detail page</p>
+<div class="container my-5 py-5">
+    <div class="card">
+        <div class=" card-header display-4 text-center text-capitalize">
+            {{ post.title }}
+        </div>
+        <div class="card-body">
+            <p class="card-text text-justify">{{ post.body }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+        <div class="card-footer text-muted text-start">
+            Published {{ post.publish }} By {{ post.author }}
+        </div>
+    </div>
+</div>
 {% endblock %}
