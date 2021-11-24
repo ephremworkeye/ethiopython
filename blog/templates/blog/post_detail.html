@@ -9,6 +9,12 @@
         </div>
         <div class="card-body">
             <p class="card-text text-justify">{{ post.body }}</p>
+            <p class="card-text text-justify">
+                <a href="{% url 'blog:post_share' post.id %}" class="nav-link">
+                    Share
+                </a>
+            </p>
+
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
         <div class="card-footer text-muted text-start">
