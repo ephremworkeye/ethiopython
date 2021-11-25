@@ -64,8 +64,9 @@
 </div>
 
 <!-- related posts -->
+{% if related_posts %}
 <div class="container my-5">
-    <h1 class="text-center text-capitalize display-3 pb-2">Related Posts</h1>
+    <h1 class="text-center text-uppercase display-2 pb-2">Related Posts</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for post in related_posts %}
         <div class="col">
@@ -82,10 +83,14 @@
                 </div>
             </div>
         </div>
-        {% empty %}
-        <h1>No similar posts</h1>
         {% endfor %}
     </div>
 </div>
+{% else %}
+<div class="container text-center">
+    <p class="lead fs-3">No Related Posts</p>
+
+</div>
+{% endif %}
 
 {% endblock %}
