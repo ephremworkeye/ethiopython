@@ -21,17 +21,17 @@
             Published {{ post.publish }} By {{ post.author }}
         </div>
         {% with comments.count as total_comments %}
-        <h3 class="my-3">{{ total_comments }} comment {{ total_comments|pluralize }}</h3>
+        <h3 class="my-3 ps-2">{{ total_comments }} comment {{ total_comments|pluralize }}</h3>
         {% endwith %}
         <div class="">
             {% if new_comment %}
-            <h2>Your comment has been added.</h2>
+            <h2 class="ps-2">Your comment has been added.</h2>
             {% else %}
-            <h2>Add a new comment</h2>
-            <form method="post" class="bg-light">
+            <h2 class="ps-2">Add a new comment</h2>
+            <form method="post" class="bg-light p-2">
                 {{ comment_form|crispy }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-lg btn-dark mb-2">Add Comment</button>
+                <button type="submit" class="btn btn-lg btn-dark mb-2 ps-2">Add Comment</button>
             </form>
             {% endif %}
         </div>
@@ -57,9 +57,35 @@
             </div>
         </div>
         {% empty %}
-        <p class="lead py-2 my-2">There are no comments yet</p>
+        <p class="lead py-2 my-2 ps-2">There are no comments yet</p>
         {% endfor %}
     </div>
 
 </div>
+
+<!-- related posts -->
+<div class="container my-5">
+    <h1 class="text-center text-capitalize display-3 pb-2">Related Posts</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for post in related_posts %}
+        <div class="col">
+            <div class="card bg-light p-3">
+                <div class="card-body">
+                    <a href="{{ post.get_absolute_url }}" class="nav-link ps-0">
+                        <h3 class="card-title fw-bold text-secondary">{{ post.title }}</h3>
+                    </a>
+                    <p class="card-text">{{ post.body|truncatewords:30|linebreaks }}
+                        <a href="{{ post.get_absolute_url }}" class="card-link text-uppercase text-secondary">
+                            read more
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h1>No similar posts</h1>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
