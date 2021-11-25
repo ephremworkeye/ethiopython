@@ -1,4 +1,5 @@
 from django import forms
+from .models import Comment
 
 
 class PostEmailShareForm(forms.Form):
@@ -6,3 +7,9 @@ class PostEmailShareForm(forms.Form):
     email = forms.EmailField()
     to = forms.EmailField()
     comments = forms.CharField(required=False, widget=forms.Textarea)
+
+
+class PostCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'email', 'body']

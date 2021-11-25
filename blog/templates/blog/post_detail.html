@@ -1,8 +1,9 @@
 {% extends 'base.html'%}
+{% load crispy_forms_tags %}
 {% block title %}{{ post.title }}{% endblock%}
 
 {% block content %}
-<div class="container my-5 py-5">
+<div class="container my-5 py-5 col-lg-9">
     <div class="card">
         <div class=" card-header display-4 text-center text-capitalize">
             {{ post.title }}
@@ -10,16 +11,55 @@
         <div class="card-body">
             <p class="card-text text-justify">{{ post.body }}</p>
             <p class="card-text text-justify">
-                <a href="{% url 'blog:post_share' post.id %}" class="nav-link">
+                <a href="{% url 'blog:post_share' post.id %}" class="btn btn-lg btn-dark">
                     Share
                 </a>
             </p>
-
-            <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
+
         <div class="card-footer text-muted text-start">
             Published {{ post.publish }} By {{ post.author }}
         </div>
+        {% with comments.count as total_comments %}
+        <h3 class="my-3">{{ total_comments }} comment {{ total_comments|pluralize }}</h3>
+        {% endwith %}
+        <div class="">
+            {% if new_comment %}
+            <h2>Your comment has been added.</h2>
+            {% else %}
+            <h2>Add a new comment</h2>
+            <form method="post" class="bg-light">
+                {{ comment_form|crispy }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-dark mb-2">Add Comment</button>
+            </form>
+            {% endif %}
+        </div>
+        {% for comment in comments %}
+        <div class="row my-2">
+            <div class="col-1 pe-2">
+                <div class="ms-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                        class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                        <path
+                            d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    </svg>
+                </div>
+
+            </div>
+            <div class="col-9">
+                <p>
+                    <span class="text-danger text-capitalize lead me-2">{{ comment.name }}</span>
+                    {{ comment.created_at }}
+                </p>
+                <p class="lead">{{ comment.body|linebreaks }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <p class="lead py-2 my-2">There are no comments yet</p>
+        {% endfor %}
     </div>
+
 </div>
 {% endblock %}
