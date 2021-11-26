@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block title %}search{% endblock%}
+
+{% block content %}
+<div class="container m-5 p-5">
+    {% if query %}
+    <p class="text-uppercase fs-4">
+        {% with results.count as total_results %}
+        {{ total_results }} results for <span class="fw-bolder fs-4">{{ query|upper }}</span>
+        {% endwith %}
+    </p>
+
+    {% for post in results %}
+    <div class="col-lg-10">
+        <h4><a class="nav-link ps-0 text-secondary" href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+        <p>{{ post.body|truncatewords:30|linebreaks }}</p>
+    </div>
+
+    {% empty %}
+    <div class="container my-5 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+
+        <div class="text-center py-5">
+            <p class="lead fs-4">No results found</p>
+        </div>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.db.models import Count
+from django.contrib.postgres.search import SearchVector
 from taggit.models import Tag
 from .forms import PostEmailShareForm, PostCommentForm
 from .models import Post, Comment
@@ -77,3 +78,10 @@ def post_share(request, id):
     else:
         form = PostEmailShareForm()
     return render(request, 'blog/post_share.html', {'post': post, 'form': form, 'sent': sent})
+
+
+def post_search(request):
+    query = request.GET.get('query', '')
+    results = Post.published.annotate(
+        search=SearchVector('title', 'body'),).filter(search=query)
+    return render(request, 'blog/search.html', {'query': query, 'results': results})
