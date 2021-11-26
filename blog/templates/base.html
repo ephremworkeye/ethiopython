@@ -26,18 +26,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Training</a>
+                        <a class="nav-link" href="{% url 'blog:training' %}">Training</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Consulting</a>
+                        <a class="nav-link" href="{% url 'blog:consultancy' %}">Consulting</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false"> Courses</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Python</a></li>
-                            <li><a class="dropdown-item" href="#">Django</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog:contact' %}">Contact</a>
                     </li>
                 </ul>
                 <form action="{% url 'blog:post_search' %}" method="get" class="d-flex col-lg-6">
@@ -55,6 +53,9 @@
 
 
     <!-- footer -->
+    <div class="container my-5 py-5">
+
+    </div>
     <footer class="bg-dark text-light text-center text-lg-start pt-5 mt-5">
         <div class="container p-5">
             <div class="row text-light">
@@ -71,10 +72,10 @@
                     <h5 class="text-uppercase">Get to know us</h5>
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white">Career</a>
+                            <a href="{% url 'blog:training' %}" class="text-white">Training</a>
                         </li>
                         <li>
-                            <a href="#contact" class="text-white">Contact</a>
+                            <a href="{% url 'blog:contact' %}" class="text-white">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -82,14 +83,12 @@
                     <h5 class="text-uppercase mb-0">Newsletter</h5>
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#" class="text-white">Podcast</a>
+                            <a href="{% url 'blog:about' %}" class="text-white">About</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white">YouTube</a>
+                            <a href="{% url 'blog:consultancy' %}" class="text-white">Consultancy</a>
                         </li>
-                        <li>
-                            <a href="#!" class="text-white">Advertise</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>

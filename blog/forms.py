@@ -13,3 +13,10 @@ class PostCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['name', 'email', 'body']
+
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(max_length=250)
+    name = forms.CharField(max_length=50)
+    email = forms.EmailField()
+    message = forms.CharField(required=False, widget=forms.Textarea)

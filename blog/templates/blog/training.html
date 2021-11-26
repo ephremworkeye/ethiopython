@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}Training{% endblock%}
+
+{% block content %}
+<div class="container text-center text-uppercase mt-5">
+    <h1 class="display-3 mb-3">Training</h1>
+</div>
+<section id="pricing" class="bg-light mt-5 py-4">
+    <div class="container-lg">
+        <div class="text-center">
+            <h2>Pricing Plans</h2>
+            <p class="lead text-muted">Choose a pricing plan to suit you</p>
+        </div>
+    </div>
+
+    <div class="row my-5 align-items-center justify-content-center g-0">
+        <div class="col-8 col-lg-4 col-xl-3">
+            <div class="card border-0">
+                <div class="card-body text-center py-4">
+                    <h4 class="card-title">Python</h4>
+                    <p class="lead card-subtitle">Basic to Advanced</p>
+                    <p class="display-5 my-4 text-secondary fw-bold">12.99</p>
+                    <p class="card-text mx-5 text-muted d-none d-lg-block">Lorem, ipsum dolor sit amet consectetur
+                        adipisicing elit.</p>
+                    <a href="#" class="btn btn-outline-secondary btn-lg mt-3">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 col-lg-4">
+            <div class="card border-primay border-2">
+
+                <div class="card-body text-center py-5">
+                    <h4 class="card-title">Django</h4>
+                    <p class="lead card-subtitle">4 portfolio projects</p>
+                    <p class="display-4 my-4 text-secondary fw-bold">18.99</p>
+                    <p class="card-text mx-5 text-muted d-none d-lg-block">Lorem ipsum dolor, sit amet consectetur
+                        adipisicing elit. Et sunt ipsum vel vitae!</p>
+                    <a href="#" class="btn btn-outline-secondary btn-lg mt-3">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-8 col-lg-4 col-xl-3">
+            <div class="card border-0">
+                <div class="card-body text-center py-4">
+                    <h4 class="card-title">Postgresql</h4>
+                    <p class="lead card-subtitle">Basic to Advanced</p>
+                    <p class="display-5 my-4 text-secondary fw-bold">20.99</p>
+                    <p class="card-text mx-5 text-muted d-none d-lg-block">Lorem, ipsum dolor sit amet consectetur
+                        adipisicing elit.</p>
+                    <a href="#" class="btn btn-outline-secondary btn-lg mt-3">Buy Now</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

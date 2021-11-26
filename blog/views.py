@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.mail import send_mail
 from django.db.models import Count
 from django.contrib.postgres.search import SearchVector
 from taggit.models import Tag
-from .forms import PostEmailShareForm, PostCommentForm
+from .forms import PostEmailShareForm, PostCommentForm, ContactForm
 from .models import Post, Comment
 
 # Create your views here.
@@ -85,3 +87,37 @@ def post_search(request):
     results = Post.published.annotate(
         search=SearchVector('title', 'body'),).filter(search=query)
     return render(request, 'blog/search.html', {'query': query, 'results': results})
+
+
+def about(request):
+    return render(request, 'blog/about.html')
+
+
+def contact(request):
+    sent = False
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+
+            send_mail(
+                cd['subject'],
+                cd['message'],
+                cd['email'],
+                ['ephremwube@gmail.com'],
+            )
+            return HttpResponseRedirect('/contact?sent=True')
+
+    else:
+        form = ContactForm()
+        if 'sent' in request.GET:
+            sent = True
+    return render(request, 'blog/contact.html', {'form': form, 'sent': sent})
+
+
+def training(request):
+    return render(request, 'blog/training.html')
+
+
+def consultancy(request):
+    return render(request, 'blog/consultancy.html')
