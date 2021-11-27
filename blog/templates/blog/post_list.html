@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load blog_tags %}
 {% load static %}
 {% block title %}Home{% endblock%}
 
@@ -50,6 +51,36 @@
 
 
     {% include "pagination.html" with page=posts %}
+
+</div>
+
+<div class="container my-5">
+    <h5 class="display-5 text-uppercase text-center">Summary</h5>
+    <div class="row m-auto col-lg-5 text-center bg-light py-3">
+        <div class="col-6">
+            <div class="py-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-stickies-fill" viewBox="0 0 16 16">
+                    <path d="M0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5A1.5 1.5 0 0 0 0 1.5z" />
+                    <path
+                        d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zm6 8.5a1 1 0 0 1 1-1h4.396a.25.25 0 0 1 .177.427l-5.146 5.146a.25.25 0 0 1-.427-.177V10.5z" />
+                </svg>
+            </div>
+            <p class="lead">{% total_posts %}</p>
+            <p class="lead text-uppercase">Total Posts</p>
+        </div>
+        <div class="col-6">
+            <div class="py-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-chat-left-dots-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                </svg>
+            </div>
+            <p class="lead">{% total_comments %}</p>
+            <p class="lead text-uppercase">Total Comments</p>
+        </div>
+    </div>
 </div>
 
 
