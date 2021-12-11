@@ -1,0 +1,13 @@
+.navbar {
+    background-image: linear-gradient(to right, rgb(4, 16, 189), rgba(56, 53, 187, 0.911));
+}
+
+#banner{
+    background-image: linear-gradient(to right, rgb(4, 16, 189), rgba(56, 53, 187, 0.911));
+    padding-top: 5%;
+    color: white;
+}
+
+.bottom-img {
+    width: 100%;
+}
