@@ -1,14 +1,17 @@
-<div class="container mb-3 bg-light">
+<div class="container mb-3">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for post in commented_posts %}
         <div class="col">
-            <div class="card p-3">
+            <div class="card h-100 box shadow-lg mb-5 bg-body rounded">
                 <div class="card-body">
                     <a href="{{ post.get_absolute_url }}" class="nav-link ps-0">
-                        <h3 class="card-title fw-bold text-secondary">{{ post.title }}</h3>
+                        <h3 class="card-title fw-bold  text-dark">{{ post.title }}</h3>
                     </a>
                     {% for tag in post.tags.all %}
-                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="btn btn-danger">{{ tag.name }}</a>
+
+                    <a href="{% url 'blog:post_list_by_tag' tag.slug %}" class="pe-2 text-dark">
+                        {{ tag.name }}
+                    </a>
                     {% if not forloop.last %} {% endif %}
                     {% endfor %}
                     <p class="card-text">{{ post.body|truncatewords:30|linebreaks }}
@@ -18,9 +21,10 @@
                     </p>
 
                 </div>
-                <div class="card-footer text-muted">
+                <div class="card-footer">
                     Published {{ post.publish }} by {{ post.author }}
                 </div>
+
             </div>
         </div>
         {% empty %}

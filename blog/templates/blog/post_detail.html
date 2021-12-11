@@ -3,7 +3,7 @@
 {% block title %}{{ post.title }}{% endblock%}
 
 {% block content %}
-<div class="container my-5 py-5 col-lg-9">
+<div class="container my-5 py-5 col-lg-9 shadow-lg p-3 mb-5 bg-body rounded">
     <div class="card">
         <div class=" card-header display-4 text-center text-capitalize">
             {{ post.title }}
@@ -11,7 +11,7 @@
         <div class="card-body">
             <p class="card-text text-justify">{{ post.body }}</p>
             <p class="card-text text-justify">
-                <a href="{% url 'blog:post_share' post.id %}" class="btn btn-lg btn-dark">
+                <a href="{% url 'blog:post_share' post.id %}" class="btn btn-lg btn-success">
                     Share
                 </a>
             </p>
@@ -28,10 +28,11 @@
             <h2 class="ps-2">Your comment has been added.</h2>
             {% else %}
             <h2 class="ps-2">Add a new comment</h2>
-            <form method="post" class="bg-light p-2">
+            <form method="post" class="p-2">
                 {{ comment_form|crispy }}
                 {% csrf_token %}
-                <button type="submit" class="btn btn-lg btn-dark mb-2 ps-2">Add Comment</button>
+                <button type="submit" class="btn btn-success btn-lg mb-2 ps-2">Add
+                    Comment</button>
             </form>
             {% endif %}
         </div>
@@ -67,19 +68,24 @@
 {% if related_posts %}
 <div class="container my-5">
     <h1 class="text-center text-uppercase display-2 pb-2">Related Posts</h1>
+</div>
+<div class="container mb-3">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for post in related_posts %}
         <div class="col">
-            <div class="card bg-light p-3">
+            <div class="card h-100 shadow-lg mb-5 bg-body rounded">
                 <div class="card-body">
                     <a href="{{ post.get_absolute_url }}" class="nav-link ps-0">
-                        <h3 class="card-title fw-bold text-secondary">{{ post.title }}</h3>
+                        <h3 class="card-title fw-bold text-dark">{{ post.title }}</h3>
                     </a>
                     <p class="card-text">{{ post.body|truncatewords:30|linebreaks }}
-                        <a href="{{ post.get_absolute_url }}" class="card-link text-uppercase text-secondary">
+                        <a href="{{ post.get_absolute_url }}" class="card-link text-uppercase text-dark">
                             read more
                         </a>
                     </p>
+                </div>
+                <div class="card-footer">
+                    Published {{ post.publish }} by {{ post.author }}
                 </div>
             </div>
         </div>
